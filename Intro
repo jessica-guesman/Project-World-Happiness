@@ -1,0 +1,28 @@
+research question
+Will  Happiness increase in 2022 based on the data from 2020 and 2021?
+
+The data came from Kaggle.  And was collected from around the world, with variables including social support, healthy life expectancy and other predicting the ladder score or rather what
+the happiness was rated. 
+
+
+these are the variables
+Country name
+Regional indicator
+Ladder score
+Standard error of ladder score
+upperwhisker
+lowerwhisker
+Logged GDP per capita
+Social support
+Healthy life expectancy
+Freedom to make life choices
+Generosity
+Perceptions of corruption
+Ladder score in Dystopia
+Explained by: Log GDP per capita
+Explained by: Social support
+Explained by: Healthy life expectancy
+Explained by: Freedom to make life choices
+Explained by: Generosity
+Explained by: Perceptions of corruption
+Dystopia + residual
