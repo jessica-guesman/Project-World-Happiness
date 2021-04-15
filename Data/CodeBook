@@ -1,12 +1,57 @@
 Code Book
 
-
-
+This data contains the Happiness Score and the variables used to calulate it for 149 countries in 2021 and 153 values in 2020.
+The Happiness Score is a national average of the responses to the main life evaluation question asked in the Gallup World Poll (GWP), which uses the Cantril Ladder.
+All variables, excluding country and Region, are averages and therefor are all numeric values.
+The Happiness Score is explained by the following factors:
+GDP per capita
+Healthy Life Expectancy
+Social support
+Freedom to make life choices
+Generosity
+Corruption Perception
+Residual error
 
 Variables:
 
+Country.name
+This variable contains 149 in 2021 data and 153 in 2020 data unique variables in it. It holds different names from each country in the survey.
+It is character class? 
 
-Country
-This variable contains 158 unique variables in it. It holds different names from each country in the survey.
+Region.indicator
+This variable shows the regions that the data was taken from. It is not a numerical value.
 
-Region 
+Ladder.score
+This variable ranks each country with its own number, based on the given ranking. There are 158 unique variables
+in this column. It is a numeric value.
+
+Standard.error.of.ladder.score
+This is the average of standard error for the Ladder.score in each country.
+
+upperwhisker
+the upper whisker average of the Ladder.score in each country.
+
+lowerwhisker
+The lower whisker average of the Ladder.score in each country.
+
+Logged.GDP.per.capita (GDP per capita)
+This variable accounts for the GDP per capita of each country on the list.
+
+Social.support
+This variable was expressed to be the average social support for people in each country
+
+Health.life.expectancy
+This variable deals with the average life expectancy in each country.
+
+Freedom.to.make.life.choices
+This variable represents the Freedom to make life choices and was determine by the average of responses from each country.
+
+Perception.of.corruption
+This variable represents the peoples average perception of corruption in their repective countries.
+
+Generosity 
+This variable is the average of peoples overall generosity in their countries. 
+
+Ladder.score.in.dystopia
+
+
