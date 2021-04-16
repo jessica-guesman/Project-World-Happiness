@@ -12,6 +12,9 @@ Generosity
 Corruption Perception
 Residual error
 
+
+**The variables that start with Explained we do not know what exactly the represent since the dataset from kaggle does not list what they are, and we do not have access to the original 
+data from Gallup World poll. There was supposed to be a link on kaggle but it does not work. We just know that those variables are numeric.
 Variables:
 
 Country.name
@@ -53,5 +56,27 @@ Generosity
 This variable is the average of peoples overall generosity in their countries. 
 
 Ladder.score.in.dystopia
+This variable is the same for all of the countries surveryed
+
+Explained.by..Log.GDP.Per.Capita
+This variable is numeric
+
+Explained.by..Social.support
+This vaiable is numeric
+
+Explained.by..Healthy.Life.Style
+This variables is numeric
+
+Explained.by..Freedom.to.make.choices
+This Variable is numeric
+
+Explained.by..Generosity
+This variable is numeric
+
+Explained.by..Perceptions.of.Corruption
+This variable is numeric
+
+Dystopia...Residual.
+This value is numeric
 
 
