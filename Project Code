@@ -1,0 +1,195 @@
+
+```{r}
+df1 = read.csv('C:\\Users\\guesm\\Documents\\Methods of Data Science\\2020.csv')
+df2 = read.csv('C:\\Users\\guesm\\Documents\\Methods of Data Science\\2021.csv')
+```
+##Data Cleaning
+
+renaming the data columns for both data sets
+```{r}
+names(df1)<- c('Country.name', 'Regional.indicator', 'Ladder.score', 'Standard.error.of.ladder.score', 'upperwhisker', 'lowerwhisker', 'Logged.GDP.Per.capita', 'Social.support', 'Healthy.life.expectancy', 'Freedom.to.make.life.choices', 'Generosity', 'Perceptions.of.corruption', 'Ladder.score.in.dystopia', 'Explained.by.log.GDP.Per.Capita', 'Explained.by.social.support', 'Explained.by.healthy.life.expectancy', 'Explained.by.freedom.to.make.choices', 'Explained.by.Generosity', 'Explained.by.perceptions.of.corruptions', 'Dystopia.residual')
+names(df1)
+```
+
+```{r}
+names(df2)<- c('Country.name', 'Regional.indicator', 'Ladder.score', 'Standard.error.of.ladder.score', 'upperwhisker', 'lowerwhisker', 'Logged.GDP.Per.capita', 'Social.support', 'Healthy.life.expectancy', 'Freedom.to.make.life.choices', 'Generosity', 'Perceptions.of.corruption', 'Ladder.score.in.dystopia', 'Explained.by.log.GDP.Per.Capita', 'Explained.by.social.support', 'Explained.by.healthy.life.expectancy', 'Explained.by.freedom.to.make.choices', 'Explained.by.Generosity', 'Explained.by.perceptions.of.corruptions', 'Dystopia.residual')
+names(df2)
+```
+
+deleting unnesscary columns for both data sets. removing the same columns from each dataset.
+This is for data base number 1.
+```{r}
+
+df1<-subset(df1, select = -c(Standard.error.of.ladder.score))
+
+df1 <- subset(df1, select = -c(upperwhisker))
+
+df1 <- subset(df1, select = -c(lowerwhisker))
+
+df1 <- subset(df1, select = -c(Ladder.score.in.dystopia))
+
+df1 <- subset(df1, select = -c(Explained.by.log.GDP.Per.Capita))
+
+df1 <- subset(df1, select = -c(Explained.by.social.support))
+
+df1 <- subset(df1, select = -c(Explained.by.healthy.life.expectancy))
+
+df1 <- subset(df1, select = -c(Explained.by.freedom.to.make.choices))
+
+df1 <- subset(df1, select = -c(Explained.by.Generosity))
+
+df1 <- subset(df1, select = -c(Explained.by.perceptions.of.corruptions))
+
+df1 <- subset(df1, select = -c(Dystopia.residual))
+
+df1 <- subset(df1, select = -c(Country.name))
+
+df1 <- subset(df1, select = -c(Regional.indicator))
+```
+
+
+This code block deletes columns we do not need from column from dataset 2. 
+```{r}
+
+df2<-subset(df2, select = -c(Standard.error.of.ladder.score))
+
+df2 <- subset(df2, select = -c(upperwhisker))
+
+df2 <- subset(df2, select = -c(lowerwhisker))
+
+df2 <- subset(df2, select = -c(Ladder.score.in.dystopia))
+
+df2 <- subset(df2, select = -c(Explained.by.log.GDP.Per.Capita))
+
+df2 <- subset(df2, select = -c(Explained.by.social.support))
+
+df2 <- subset(df2, select = -c(Explained.by.healthy.life.expectancy))
+
+df2 <- subset(df2, select = -c(Explained.by.freedom.to.make.choices))
+
+df2 <- subset(df2, select = -c(Explained.by.Generosity))
+
+df2 <- subset(df2, select = -c(Explained.by.perceptions.of.corruptions))
+
+df2 <- subset(df2, select = -c(Dystopia.residual))
+
+df2 <- subset(df2, select = -c(Country.name))
+
+df2 <- subset(df2, select = -c(Regional.indicator))
+```
+
+```{r}
+df = rbind(df1,df2)
+```
+
+EDA
+```{r}
+plot(x = df$Social.support, y = df$Ladder.score)
+```
+```{r}
+plot(x = df$Healthy.life.expectancy, y = df$Ladder.score)
+```
+```{r}
+plot(x = df$Logged.GDP.Per.capita, y = df$Ladder.score)
+```
+```{r}
+plot(x = df$Freedom.to.make.life.choices, y = df$Ladder.score)
+```
+```{r}
+plot(x = df$Generosity, y = df$Ladder.score)
+```
+```{r}
+plot(x = df$Perceptions.of.corruption, y = df$Ladder.score)
+```
+
+Multiple Linear Regression
+
+```{r}
+df$Ladder.score = as.numeric(df$Ladder.score)
+str(df)
+```
+
+```{r}
+library(caTools)
+set.seed(123)
+split = sample.split(df$Ladder.score, SplitRatio = 0.8)
+training_set = subset(df, split == TRUE)
+test_set = subset(df, split == FALSE)
+```
+
+making the multiple regression model
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Freedom.to.make.life.choices + Generosity + Perceptions.of.corruption,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+Beginning backwards elimination.
+this step removing Freedom.to.make.life.choices because it has the highest p value, and is larger than a sig level of .5
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Generosity + Perceptions.of.corruption,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+
+more elimination. Taking away the variable perceptions.of.corruption, because it is now has the highest p value, and it is above a .5 sig level.
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Generosity,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+more elimination. taking away generosity because it now has the highest p value and is greater than sig value of .5
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Perceptions.of.corruption,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+
+more elimination. getting rid of Healthy.life.expectancy for the same reasons as before
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Perceptions.of.corruption,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+
+more elimination. getting rid of perceptions. of.corruption
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+more elimination. getting rid of Social.support
+```{r}
+regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita,
+               data = training_set)
+```
+
+```{r}
+summary(regressor)
+```
+predicting test set results.
+```{r}
+y_pred = predict(regressor, newdata = test_set)
+```
+
+Visualizing the regression
+```{r}
+
+```
