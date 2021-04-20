@@ -1,6 +1,41 @@
-target and independent variables
-target is ladder score, and varaible might include generosity, healthy life expectancy, perception of corruption. 
+Target and Independent Variables:
+Target is ladder score (happiness), and variables include GDP per capita, healthy life expectancy, social support, freedom to make life choices, generosity, and corruption perception 
 
 
-comparison groups would be
-2020 and 2021
+Comparison groups would be the 2020 and 2021 csv files with the data.
+
+For the project, we will be using multiple linear regressions to build a ladder score in order to predict for happiness. Along with this method, steps such as backwards elimination must take place.
+
+
+
+```{r}
+plot(x = df$Social.support, y = df$Ladder.score)
+```
+This code represents the scatter plot that was created showing the relationship between the social support variable and the ladder score. In this scatterplot, there is a positive relationship with a potential parabloa. We can conclude off the scatter plot that the higher the social support, the higher the ladder score typically.
+
+```{r}
+plot(x = df$Healthy.life.expectancy, y = df$Ladder.score)
+```
+This code represents the scatter plot that was created showing the relationship between the healthy life expectancy of a person and their ladder score. This scatterplot has a positive correlation and shows that the higher the healthy life expectancy, the higher the ladder score.
+
+```{r}
+plot(x = df$Logged.GDP.Per.capita, y = df$Ladder.score)
+```
+This code shows the scatterplot of the relatiosnip of the logged GDP per capita and the ladder score. There was a postive correlation showing that the higher the logged GDP per captia, the higher the ladder score.
+
+```{r}
+plot(x = df$Freedom.to.make.life.choices, y = df$Ladder.score)
+```
+This code shows the scatterplot that represents the relationship between the freedom to make life choices and the ladder score. There is a positive correlation, meaning that the higher the freedom to make life choices was, the higher the ladder score was.
+
+```{r}
+plot(x = df$Generosity, y = df$Ladder.score)
+```
+This code shows the scatterplot of the relationship between the generosity of the person and the ladder score. This scatterplot really did not have a distinct relationship between the two variables.
+
+```{r}
+plot(x = df$Perceptions.of.corruption, y = df$Ladder.score)
+```
+This code shows the scatterplot between the perceptions of corruption and the ladder score. There is a negative correlation in this scatterplot, meaning that the higher the perception of corruption, the lower the ladder score was.
+
+At a first glance the scatterplots show what we would expect, however it was interesting seeing how the generosity variable showed no distinct relationship.
