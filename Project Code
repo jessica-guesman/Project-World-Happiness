@@ -1,4 +1,5 @@
 
+
 ```{r}
 df1 = read.csv('C:\\Users\\guesm\\Documents\\Methods of Data Science\\2020.csv')
 df2 = read.csv('C:\\Users\\guesm\\Documents\\Methods of Data Science\\2021.csv')
@@ -126,70 +127,29 @@ regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support +
 ```{r}
 summary(regressor)
 ```
-Beginning backwards elimination.
-this step removing Freedom.to.make.life.choices because it has the highest p value, and is larger than a sig level of .5
-```{r}
-regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Generosity + Perceptions.of.corruption,
-               data = training_set)
-```
 
-```{r}
-summary(regressor)
-```
-
-more elimination. Taking away the variable perceptions.of.corruption, because it is now has the highest p value, and it is above a .5 sig level.
-```{r}
-regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Generosity,
-               data = training_set)
-```
-
-```{r}
-summary(regressor)
-```
-more elimination. taking away generosity because it now has the highest p value and is greater than sig value of .5
-```{r}
-regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Perceptions.of.corruption,
-               data = training_set)
-```
-
-```{r}
-summary(regressor)
-```
-
-more elimination. getting rid of Healthy.life.expectancy for the same reasons as before
-```{r}
-regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support + Perceptions.of.corruption,
-               data = training_set)
-```
-
-```{r}
-summary(regressor)
-```
-
-more elimination. getting rid of perceptions. of.corruption
-```{r}
-regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita + Social.support,
-               data = training_set)
-```
-
-```{r}
-summary(regressor)
-```
-more elimination. getting rid of Social.support
-```{r}
-regressor = lm(formula = Ladder.score ~ Logged.GDP.Per.capita,
-               data = training_set)
-```
-
-```{r}
-summary(regressor)
-```
 predicting test set results.
 ```{r}
 y_pred = predict(regressor, newdata = test_set)
 ```
 
-Visualizing the regression
-```{r}
 
+Polynomial Regression
+```{r}
+poly_reg <- lm(formula = Ladder.score ~ poly(Logged.GDP.Per.capita + Social.support + Healthy.life.expectancy + Freedom.to.make.life.choices + Generosity + Perceptions.of.corruption,2), 
+               data = df)
+
+summary(poly_reg)
+```
+
+```{r}
+library(ggplot2)
+ggplot() +
+  geom_point(aes(x = df$Logged.GDP.Per.capita, y = df$Ladder.score),
+             color = 'red') +
+  geom_line(aes(x = df$Logged.GDP.Per.capita, y = predict(poly_reg, newdata = df)),
+            color = 'blue') +
+  ggtitle('Logged.GDP.Per.capita vs Ladder.score (Polynomial Regression)') +
+  xlab('Logged.GDP.Per.Capita') +
+  ylab('Ladder.score')
 ```
