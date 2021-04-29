@@ -5,6 +5,12 @@ The data came from Kaggle.  And was collected from around the world, with variab
 the happiness was rated. 
 
 
+Abstract:  We investigated whether the variables (listed below) are related to the general happiness score of the sample group from various countries. 
+Variables that were including in the data to generate the happiness score were GDP per capita, healthy life expectancy, social support, freedom to make life choices, generosity, and corruption perception. 
+Our data was collected from the Gallup World Poll (GWP). We used multiple linear regressions to build a ladder score to predict for happiness. 
+The purpose of our project is to use all the methods we studied in class and apply them to predict a ladder score for the year 2022.
+
+
 these are the variables
 Country name
 Regional indicator
