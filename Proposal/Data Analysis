@@ -38,4 +38,4 @@ plot(x = df$Perceptions.of.corruption, y = df$Ladder.score)
 ```
 This code shows the scatterplot between the perceptions of corruption and the ladder score. There is a negative correlation in this scatterplot, meaning that the higher the perception of corruption, the lower the ladder score was.
 
-At a first glance the scatterplots show what we would expect, however it was interesting seeing how the generosity variable showed no distinct relationship.
+At a first glance the scatterplots show what we would expect, however it was interesting seeing how the generosity variable showed no distinct relationship. The other variables that are being used to create the ladder score were showing very disntinct correlations that we expected to occur. 
